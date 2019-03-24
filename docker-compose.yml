@@ -1,0 +1,22 @@
+version: '3'
+services:
+  my_atom:
+    build:
+      context: ./my_atom
+      dockerfile: Dockerfile
+      args:
+        - usuario=cris
+
+    container_name: my_atom
+
+    environment:
+      - DISPLAY=${DISPLAY}
+
+    network_mode: "host"
+    restart: "no"
+    volumes:
+      - /tmp/.X11-unix/:/tmp/.X11-unix/
+      - /dev/shm:/dev/shm
+      - /trabajos:/trabajos
+    working_dir: /trabajos
+    command: bash -c "/usr/bin/atom -f /trabajos/mintuatze/mintuatze-app"

@@ -20,3 +20,4 @@ services:
       - /trabajos:/trabajos
     working_dir: /trabajos
     command: bash -c "/usr/bin/atom -f /trabajos/mintuatze/mintuatze-app"
+ 

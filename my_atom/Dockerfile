@@ -6,7 +6,8 @@ ENV ATOM_VERSION v1.35.1
 
 ARG usuario
 
-RUN apt-get update && \
+RUN echo $usuario && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
       ca-certificates \
       curl \

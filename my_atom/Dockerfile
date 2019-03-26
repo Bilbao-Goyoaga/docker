@@ -1,10 +1,10 @@
 FROM ubuntu:latest
 
 ENV ATOM_VERSION v1.35.1
+ENV usuario atom
+# ARG usuario
 
 # COPY ./resources/atom.deb /tmp/atom.deb
-
-ARG usuario
 
 RUN echo $usuario && \
     apt-get update && \

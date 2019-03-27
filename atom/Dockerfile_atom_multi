@@ -1,0 +1,81 @@
+FROM ubuntu:latest as x11
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      ca-certificates \
+      curl \
+      fakeroot \
+      gconf2 \
+      gconf-service \
+      git \
+      gvfs-bin \
+      libasound2 \
+      libcap2 \
+      libgconf-2-4 \
+      libgcrypt20 \
+      libgtk2.0-0 \
+      libgtk-3-0 \
+      libnotify4 \
+      libnss3 \
+      libx11-xcb1 \
+      libxkbfile1 \
+      libxss1 \
+      libxtst6 \
+      libgl1-mesa-glx \
+      libgl1-mesa-dri \
+      python \
+      xdg-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+FROM x11
+
+ENV ATOM_VERSION v1.35.1
+ENV usuario atom
+
+RUN echo $usuario && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      nodejs \
+      npm && \
+    apt-get clean && \
+    npm install live-server -g && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb && \
+    dpkg -i /tmp/atom.deb && \
+    rm -f /tmp/atom.deb && \
+    groupadd -g 999 vboxsf && \
+    useradd -d /home/$usuario -m $usuario && \
+    adduser $usuario vboxsf
+
+USER $usuario
+
+RUN apm install \
+	atom-beautify \
+	atom-typescript \
+	busy-signal \
+	file-icons \
+	highlight-selected \
+	intentions \
+	linter \
+	linter-csslint \
+	linter-htmlhint \
+	linter-jshint \
+	linter-jsonlint \
+	linter-tslint \
+	linter-ui-default \
+	minimap \
+	minimap-highlight-selected \
+	minimap-linter \
+	pigments \
+	autoclose-html \
+	platformio-ide-terminal \
+	language-html-angular
+
+
+USER root
+COPY --chown=$usuario:$usuario ./resources/config.cson /home/$usuario/.atom/config.cson
+
+USER $usuario
+
+CMD ["/usr/bin/atom","-f"]

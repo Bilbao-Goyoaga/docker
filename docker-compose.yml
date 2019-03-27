@@ -1,7 +1,13 @@
 version: '3'
 services:
   my_atom:
-    image: bilbaogoyoaga/docker_my_atom
+    build:
+      context: ./my_atom
+      dockerfile: Dockerfile
+      args:
+        - usuario=cris
+
+    container_name: my_atom
 
     environment:
       - DISPLAY=${DISPLAY}

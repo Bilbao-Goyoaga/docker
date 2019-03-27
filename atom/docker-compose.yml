@@ -1,7 +1,25 @@
 version: '3'
 services:
-  my_atom:
-    image: bilbaogoyoaga/docker_my_atom
+  x11:
+    build:
+      context: ./
+      dockerfile: Dockerfile_x11
+      args:
+        - usuario=cris
+
+    container_name: x11
+
+    environment:
+      - DISPLAY=${DISPLAY}
+
+  atom:
+    build:
+      context: ./
+      dockerfile: Dockerfile_atom
+      args:
+        - usuario=cris
+
+    container_name: atom
 
     environment:
       - DISPLAY=${DISPLAY}

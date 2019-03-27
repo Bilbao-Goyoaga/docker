@@ -1,7 +1,7 @@
-FROM atom_x11:latest
+FROM bilbaogoyoaga/x11
 
-ENV ATOM_VERSION v1.35.1
-ARG usuario
+ENV ATOM_VERSION=${ATOM_VERSION:-v1.35.1}
+ARG usuario=${usuario:-atom}
 
 RUN echo $usuario && \
     apt-get update && \
@@ -44,7 +44,9 @@ RUN apm install \
 
 
 USER root
-COPY --chown=$usuario:$usuario ./resources/config.cson /home/$usuario/.atom/config.cson
+# COPY --chown=$usuario:$usuario ./resources/config.cson /home/$usuario/.atom/config.cson
+COPY ./resources/config.cson /home/$usuario/.atom/config.cson
+RUN chown $usuario:$usuario /home/$usuario/.atom/config.cson
 
 USER $usuario
 

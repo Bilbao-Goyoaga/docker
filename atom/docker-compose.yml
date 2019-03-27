@@ -1,28 +1,25 @@
 version: '3'
 services:
   x11:
+    image: bilbaogoyoaga/x11
     build:
-      context: ./
-      dockerfile: Dockerfile_x11
-      args:
-        - usuario=cris
+      context: ../x11/
+      dockerfile: Dockerfile
 
     container_name: x11
 
-    environment:
-      - DISPLAY=${DISPLAY}
-
   atom:
+    image: bilbaogoyoaga/atom
     build:
       context: ./
-      dockerfile: Dockerfile_atom
+      dockerfile: Dockerfile
       args:
         - usuario=cris
 
     container_name: atom
 
     environment:
-      - DISPLAY=${DISPLAY}
+      - DISPLAY=${DISPLAY:-":0.0"}
 
     network_mode: "host"
     restart: "no"

@@ -1,5 +1,0 @@
-FROM node
-
-RUN npm install live-server -g
-
-CMD ["node"]

@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ##### update ubuntu and Install
 RUN apt-get update \
   && apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev \
-  && ln -s /usr/bin/python3 /usr/bin/python \
   && apt-get install -y curl net-tools build-essential software-properties-common libsqlite3-dev sqlite3 bzip2 libbz2-dev git wget unzip vim \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*

@@ -1,22 +1,22 @@
 version: '3'
 services:
-  x11:
-    image: bilbaogoyoaga/x11
+  jdk8_x11:
+    image: bilbaogoyoaga/x11_jdk8
     build:
       context: ../util/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_x11_jdk8
 
-    container_name: x11
+    container_name: x11_jdk8
 
-  atom:
-    image: bilbaogoyoaga/atom
+  eclipse:
+    image: bilbaogoyoaga/eclipse-photon
     build:
       context: ./
       dockerfile: Dockerfile
       args:
         - usuario=cris
 
-    container_name: atom
+    container_name: eclipse-photon
 
     environment:
       - DISPLAY=${DISPLAY:-":0.0"}
@@ -28,4 +28,4 @@ services:
       - /dev/shm:/dev/shm
       - /trabajos:/trabajos
     working_dir: /trabajos
-    command: bash -c "/usr/bin/atom -f /trabajos/mintuatze/mintuatze-app"
+    command: /opt/eclipse/eclipse

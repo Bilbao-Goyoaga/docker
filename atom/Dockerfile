@@ -1,11 +1,14 @@
 FROM bilbaogoyoaga/x11
 
+MAINTAINER bilbao.goyoaga@gmail.com
+
 ENV ATOM_VERSION=${ATOM_VERSION:-v1.35.1}
 ARG usuario=${usuario:-atom}
 
 RUN echo $usuario && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
+      curl fakeroot gconf2 gconf-service git gvfs-bin \
       nodejs \
       npm && \
     apt-get clean && \

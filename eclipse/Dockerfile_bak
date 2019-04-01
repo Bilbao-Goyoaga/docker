@@ -5,12 +5,9 @@ MAINTAINER bilbao.goyoaga@gmail.com
 ## -------------------------------------------------------------------------------
 ## ---- USER_NAME is defined in parent image: openkbs/jdk-mvn-py3-x11 already ----
 ## -------------------------------------------------------------------------------
-ARG USER_NAME=${USER_NAME:-developer}
-ENV USER_NAME=${USER_NAME}
-ARG HOME=${ECLIPSE_HOME:-/home/${USER_NAME}}
-ENV HOME=${ECLIPSE_HOME}
+ENV USER_NAME=${USER_NAME:-developer}
+ENV HOME=${ECLIPSE_HOME:-/home/${USER_NAME}}
 ENV ECLIPSE_WORKSPACE=${HOME}/eclipse-workspace
-
 
 ## ----------------------------------------------------------------------------
 ## ---- To change to different Eclipse version: e.g., oxygen, change here! ----
@@ -66,14 +63,11 @@ RUN sudo wget -q -c ${ECLIPSE_DOWNLOAD_URL}/${ECLIPSE_TAR} && \
 #### Install Eclipse Plugins ####
 #################################
 # ... add Eclipse plugin - installation here (see example in https://github.com/DrSnowbird/papyrus-sysml-docker)
-# RUN cd /opt/eclipse && \
-#     ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/oxygen/ -installIU org.eclipse.acceleo.feature.group -nosplash && \
-#     ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/oxygen/ -installIU org.eclipse.m2m.atl.feature.group -nosplash && \
-#     ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen,http://download.eclipse.org/modeling/mdt/papyrus/components/bpmn/oxygen,http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/oxygen,http://download.eclipse.org/releases/oxygen -installIU org.eclipse.papyrus.sdk.feature.feature.group,org.eclipse.papyrus.toolsmiths.feature.feature.group,org.eclipse.papyrus.sysml14.feature.feature.group,org.eclipse.papyrus.bpmn.feature.feature.group -nosplash
+
+RUN sudo apt-get update -y && sudo apt-get install -y libwebkitgtk-3.0-0
 
 RUN mkdir -p ${HOME}/.eclipse ${ECLIPSE_WORKSPACE} &&\
     groupadd -g 999 vboxsf && \
-    useradd -d /home/${USER_NAME} -m ${USER_NAME} && \
     adduser ${USER_NAME} vboxsf && \
     sudo chown -R ${USER_NAME}:${USER_NAME} ${ECLIPSE_WORKSPACE} ${HOME}/.eclipse
 

@@ -14,7 +14,8 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        - usuario=cris
+        - ECLIPSE_HOME=${ECLIPSE_HOME:-/trabajos/eclipse}
+        - USER_NAME=${USER_NAME:-eclipse}
 
     container_name: eclipse-photon
 

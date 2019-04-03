@@ -1,12 +1,19 @@
 version: '3'
 services:
-  x11:
-    image: bilbaogoyoaga/x11
+  node:
+    image: bilbaogoyoaga/node
     build:
-      context: ../util/
+      context: ../node
       dockerfile: Dockerfile
 
-    container_name: x11
+    container_name: node
+    network_mode: "host"
+    restart: "no"
+    volumes:
+      - /trabajos:/trabajos
+    working_dir: /trabajos
+    stdin_open: true
+    tty: true
 
   atom:
     image: bilbaogoyoaga/atom
@@ -14,7 +21,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        - usuario=cris
+        - usuario=atom
 
     container_name: atom
 

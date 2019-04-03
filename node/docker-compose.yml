@@ -1,0 +1,16 @@
+version: '3'
+services:
+  node:
+    image: bilbaogoyoaga/node
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+    container_name: node
+    network_mode: "host"
+    restart: "no"
+    volumes:
+      - /trabajos:/trabajos
+    working_dir: /trabajos
+    stdin_open: true
+    tty: true

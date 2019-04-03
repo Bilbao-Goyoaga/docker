@@ -8,8 +8,11 @@ ARG usuario=${usuario:-atom}
 RUN echo $usuario && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-      curl fakeroot gconf2 gconf-service git gvfs-bin python && \
+      curl fakeroot gconf2 gconf-service git gvfs-bin python \
+      nodejs \
+      npm && \
     apt-get clean && \
+    npm install live-server -g && \
     rm -rf /var/lib/apt/lists/* && \
     curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb && \
     dpkg -i /tmp/atom.deb && \

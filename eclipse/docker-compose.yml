@@ -1,15 +1,39 @@
 version: '3'
+
 services:
-  eclipse:
-    image: bilbaogoyoaga/eclipse-photon
+  # eclipse:
+  #    image: bilbaogoyoaga/eclipse-photon
+  #    build:
+  #      context: ./
+  #      dockerfile: Dockerfile
+  #      args:
+  #        - ECLIPSE_HOME=${ECLIPSE_HOME:-/trabajos/eclipse}
+  #        - USER_NAME=${USER_NAME:-eclipse}
+  #
+  #    container_name: eclipse-photon
+  #
+  #    environment:
+  #      - DISPLAY=${DISPLAY:-":0.0"}
+  #
+  #    network_mode: "host"
+  #    restart: "no"
+  #    volumes:
+  #      - /tmp/.X11-unix/:/tmp/.X11-unix/
+  #      - /dev/shm:/dev/shm
+  #      - /trabajos:/trabajos
+  #    working_dir: /trabajos
+     # command: /opt/eclipse/eclipse
+
+  eclipse_plugins:
+    image: bilbaogoyoaga/eclipse-photon-plugins
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_plugins
       args:
         - ECLIPSE_HOME=${ECLIPSE_HOME:-/trabajos/eclipse}
         - USER_NAME=${USER_NAME:-eclipse}
 
-    container_name: eclipse-photon
+    container_name: eclipse-photon-plugins
 
     environment:
       - DISPLAY=${DISPLAY:-":0.0"}

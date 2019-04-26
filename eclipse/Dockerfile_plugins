@@ -1,0 +1,42 @@
+FROM bilbaogoyoaga/eclipse-photon
+
+MAINTAINER bilbao.goyoaga@gmail.com
+
+
+RUN cd /opt/eclipse && \
+    ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+       -repository http://download.eclipse.org/releases/2018-09/,http://download.springsource.com/release/TOOLS/sts4/update/3.9/ \
+       -installIU \
+       org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group,org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group,org.springsource.ide.eclipse.dashboard.feature.group,org.springframework.ide.eclipse.aeri.feature.feature.group,org.springframework.ide.eclipse.ajdt.feature.feature.group,org.springframework.ide.eclipse.aop.feature.feature.group,org.springframework.ide.eclipse.autowire.feature.feature.group,org.springframework.ide.eclipse.batch.feature.feature.group,org.springframework.ide.eclipse.boot.dash.feature.feature.group,org.springframework.ide.eclipse.boot.feature.feature.group,org.springframework.ide.eclipse.feature.feature.group,org.springframework.ide.eclipse.integration.feature.feature.group,org.springframework.ide.eclipse.maven.feature.feature.group,org.springframework.ide.eclipse.mylyn.feature.feature.group,org.springframework.ide.eclipse.security.feature.feature.group,org.springframework.ide.eclipse.data.feature.feature.group,org.springframework.ide.eclipse.webflow.feature.feature.group && \
+   ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+      -repository http://download.eclipse.org/releases/photon/ \
+      -installIU \
+      org.eclipse.mat.chart.feature.feature.group && \
+   ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+      -repository http://download.eclipse.org/technology/subversive/4.0/update-site/ \
+      -installIU \
+      org.eclipse.team.svn.feature.group,org.eclipse.team.svn.m2e.feature.group,org.eclipse.team.svn.mylyn.feature.group,org.eclipse.team.svn.nl1.feature.group,org.eclipse.team.svn.revision.graph.feature.group && \
+  ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+     -repository http://findbugs.cs.umd.edu/eclipse \
+     -installIU \
+     edu.umd.cs.findbugs.plugin.eclipse.feature.group && \
+  ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+     -repository http://ucdetector.sourceforge.net/update \
+     -installIU \
+     org.ucdetector.feature.feature.group
+
+#   ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+#      -repository http://download.eclipse.org/releases/photon/,http://download.springsource.com/release/TOOLS/sts4-language-servers/ \
+#      -installIU \
+#      org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group && \
+
+#   ./eclipse -application org.eclipse.equinox.p2.director -nosplash \
+#      -repository http://download.eclipse.org/releases/photon/,http://mylyn-mantis.sourceforge.net/eclipse/update/,http://download.eclipse.org/cbi/updates/license,http://download.eclipse.org/tools/orbit/downloads/latest-R \
+#      -installIU \
+#      org.eclipse.mylyn.wikitext_feature.feature.group,org.eclipse.mylyn.wikitext.editors_feature.feature.group,org.eclipse.mylyn.wikitext.sdk.feature.group,com.itsolut.mantis.wikitext_feature.feature.group,com.itsolut.mantis_feature.feature.group && \
+
+ # findBug
+ # unsedcodedetector
+ # PMD & checkstyle
+ # Spring
+ # UDA ?

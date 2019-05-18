@@ -13,6 +13,7 @@ RUN echo $usuario && \
       npm && \
     apt-get clean && \
     npm install live-server -g && \
+    npm install -g @angular/cli && \
     rm -rf /var/lib/apt/lists/* && \
     curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb && \
     dpkg -i /tmp/atom.deb && \

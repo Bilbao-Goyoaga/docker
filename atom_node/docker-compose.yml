@@ -9,6 +9,7 @@ services:
     container_name: x11
 
   atom_node:
+    image: bilbaogoyoaga/atom_node
     build:
       context: ./
       dockerfile: Dockerfile
@@ -27,4 +28,4 @@ services:
       - /dev/shm:/dev/shm
       - /trabajos:/trabajos
     working_dir: /trabajos
-    command: bash -c "/usr/bin/atom -f /trabajos/mintuatze/mintuatze-app"
+    command: bash -c "/usr/bin/atom -f /home/cris/sereda"

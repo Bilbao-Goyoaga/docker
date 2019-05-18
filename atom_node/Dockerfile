@@ -2,7 +2,7 @@ FROM bilbaogoyoaga/x11
 
 MAINTAINER bilbao.goyoaga@gmail.com
 
-ENV ATOM_VERSION=${ATOM_VERSION:-v1.35.1}
+ENV ATOM_VERSION=${ATOM_VERSION:-v1.37.0}
 ARG usuario=${usuario:-atom}
 
 RUN echo $usuario && \
